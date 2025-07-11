@@ -62,6 +62,8 @@ const decompressProcess = async (
   if (!output.success) {
     console.log('stdout', new TextDecoder().decode(output.stdout));
     console.log('stderr', new TextDecoder().decode(output.stderr));
+    console.log('zipSourcePath', zipSourcePath);
+    console.log('destinationPath', destinationPath);
   }
   
   return output.success;
