@@ -60,7 +60,8 @@ const decompressProcess = async (
   const output = await unzipCommandProcess.output();
   
   if (!output.success) {
-    console.log(new TextDecoder().decode(output.stdout));
+    console.log('stdout', new TextDecoder().decode(output.stdout));
+    console.log('stderr', new TextDecoder().decode(output.stderr));
   }
   
   return output.success;
