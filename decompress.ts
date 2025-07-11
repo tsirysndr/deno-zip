@@ -57,5 +57,11 @@ const decompressProcess = async (
         ],
     },
   );
-  return await unzipCommandProcess.output();
+  const output = await unzipCommandProcess.output();
+  
+  if (!output.success) {
+    console.log(output);
+  }
+  
+  return output.success;
 };
