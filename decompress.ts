@@ -64,6 +64,27 @@ const decompressProcess = async (
     console.log('stderr', new TextDecoder().decode(output.stderr));
     console.log('zipSourcePath', zipSourcePath);
     console.log('destinationPath', destinationPath);
+    console.log('command');
+    console.log(
+    runtimeOs === "windows" ? "PowerShell" : "unzip",
+    {
+      args: runtimeOs === "windows"
+        ? [
+          "PowerShell",
+          "Expand-Archive",
+          "-Path",
+          `"${zipSourcePath}"`,
+          "-DestinationPath",
+          `"${destinationPath}"`,
+          options?.overwrite ? "-Force" : "",
+        ]
+        : [
+          options?.overwrite ? "-o" : "",
+          zipSourcePath,
+          "-d",
+          destinationPath,
+        ],
+    });
   }
   
   return output.success;
